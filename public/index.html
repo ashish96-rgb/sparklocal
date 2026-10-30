@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f4ee">
+    <meta name="description" content="Turn a local challenge into a practical, collaborative community project with Gemma.">
+    <title>SparkLocal | Community action, made together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="SparkLocal home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Spark<span class="brand-light">Local</span></span>
+      </a>
+      <nav class="topnav" aria-label="Main navigation">
+        <a class="nav-link is-active" href="#home">Studio</a>
+        <a class="nav-link" href="#community">Community board</a>
+      </nav>
+      <div class="model-status" id="model-status" role="status" aria-live="polite">
+        <span class="status-dot"></span><span id="model-label">Checking planner…</span>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> SMALL STEPS. SHARED OWNERSHIP.</p>
+          <h1 id="page-title">Good ideas get<br><span>local.</span></h1>
+          <p class="intro-text">Start with something your community wants to change. Shape a useful first step together.</p>
+        </div>
+        <div class="impact-strip" aria-label="Community impact summary">
+          <div class="impact-icon" aria-hidden="true">↗</div>
+          <div><strong id="initiative-count">0</strong><span>open community briefs</span></div>
+          <div class="impact-divider"></div>
+          <div><strong id="neighbor-count">0</strong><span>neighbors pitching in</span></div>
+        </div>
+      </section>
+
+      <section class="studio-grid" aria-label="Create a community project">
+        <form class="challenge-form" id="challenge-form">
+          <div class="section-heading">
+            <div class="section-number">01</div>
+            <div><p class="eyebrow">YOUR COMMUNITY, YOUR CALL</p><h2>What could be better?</h2></div>
+          </div>
+          <label class="field-label" for="problem">The local challenge <span>REQUIRED</span></label>
+          <textarea id="problem" name="problem" maxlength="600" placeholder="A problem you see around you, and who it affects…" required minlength="12"></textarea>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label" for="location">Where is this?</label>
+              <input id="location" name="location" maxlength="120" placeholder="Neighborhood or town">
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="timeline">Time available</label>
+              <select id="timeline" name="timeline">
+                <option>One week</option><option selected>One month</option><option>Three months</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label" for="budget">Budget or resources</label>
+              <select id="budget" name="budget">
+                <option selected>Small or donated budget</option><option>Up to $250</option><option>Up to $1,000</option><option>People and time only</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="community">Who might join?</label>
+              <input id="community" name="community" maxlength="160" placeholder="Neighbors, a school, local groups…">
+            </div>
+          </div>
+          <button class="primary-button" id="plan-button" type="submit"><span>Shape a first step</span><span aria-hidden="true">↗</span></button>
+          <p class="form-note">Hosted Gemma receives challenge details. Do not enter sensitive personal information.</p>
+        </form>
+
+        <section class="plan-panel" id="plan-panel" aria-labelledby="plan-title" aria-live="polite">
+          <div class="plan-empty" id="plan-empty">
+            <div class="empty-mark" aria-hidden="true"><span>+</span><i></i><b></b></div>
+            <p class="eyebrow">A PLACE TO BEGIN</p>
+            <h2 id="plan-title">Make the next step<br>feel possible.</h2>
+            <p>Share a challenge and get a grounded plan with clear roles, simple supplies, and ways to see progress.</p>
+            <div class="plan-footnote"><span class="mini-spark" aria-hidden="true">✳</span> Gemma helps make the plan. Your community makes it real.</div>
+          </div>
+          <div class="plan-result" id="plan-result" hidden></div>
+        </section>
+      </section>
+
+      <section class="community-section" id="community" aria-labelledby="community-title">
+        <div class="community-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> BUILT BY NEIGHBORS</p>
+            <h2 id="community-title">On the community board<span>.</span></h2>
+          </div>
+          <label class="search-wrap"><span class="sr-only">Search community briefs</span><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a local idea"></label>
+        </div>
+        <div class="board-toolbar">
+          <div class="filter-group" role="group" aria-label="Filter projects">
+            <button class="filter-button is-selected" data-filter="all" type="button">All briefs <span id="all-count">0</span></button>
+            <button class="filter-button" data-filter="seeking" type="button">Looking for neighbors</button>
+            <button class="filter-button" data-filter="active" type="button">Underway</button>
+          </div>
+          <p class="board-note"><span aria-hidden="true">↗</span> Open ideas. Shared credit.</p>
+        </div>
+        <div class="project-list" id="project-list" aria-live="polite"></div>
+        <p class="empty-board" id="empty-board" hidden>No briefs match that search yet. Try another word.</p>
+      </section>
+
+      <footer class="footer">
+        <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">S</span><span>Spark<span class="brand-light">Local</span></span></a>
+        <p>Open tools for people making change together.</p>
+        <span class="footer-model">POWERED BY OPEN-WEIGHT GEMMA</span>
+      </footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
