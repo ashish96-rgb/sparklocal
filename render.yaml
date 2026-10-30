@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: sparklocal
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AI_PROVIDER
+        value: demo
+      - key: HF_MODEL
+        value: google/gemma-3-4b-it
+      - key: DATA_FILE
+        value: /var/data/projects.json
+    disk:
+      name: sparklocal-data
+      mountPath: /var/data
+      sizeGB: 1

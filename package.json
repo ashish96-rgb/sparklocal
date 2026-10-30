@@ -1,0 +1,26 @@
+{
+  "name": "sparklocal",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "A Gemma-powered community action studio for turning local problems into collaborative projects.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "build:deck": "node scripts/create-deck.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "pptxgenjs": "^4.0.0"
+  },
+  "overrides": {
+    "image-size": "^2.0.4"
+  }
+}
